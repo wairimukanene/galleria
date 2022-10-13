@@ -1,10 +1,12 @@
-from django.contrib import admin
-from django.urls import re_path as url
+from django.urls import path 
 from . import views
 
 
 
 urlpatterns = [
-    url('^$',views.welcome,name='welcome'),
+    path('',views.welcome,name='welcome'),
+    path('tribe/<str:pk>/', views.tribe,name='tribe'),
+    
+    
   
 ]
