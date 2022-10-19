@@ -3,7 +3,9 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def welcome(request):
+def home(request):
   return render(request, 'home.html')
-def tribe(request,pk):
+def viewPhoto(request,pk):
   return render(request , 'galley.html')
+def addPhoto(request):
+  return render(request, 'add.html')
