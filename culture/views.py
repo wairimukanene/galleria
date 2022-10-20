@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from . models import Category ,Image,Location
 
 
 # Create your views here.
 def home(request):
-  return render(request, 'home.html')
+  categories =  Category.objects.all()
+  locations = Location.objects.all()
+  context = {'categories' :categories,  'locations':locations}
+  return render(request, 'home.html' ,context)
 def viewPhoto(request,pk):
   return render(request , 'galley.html')
 def addPhoto(request):

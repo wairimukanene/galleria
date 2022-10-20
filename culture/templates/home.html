@@ -18,41 +18,105 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Cultural galleria</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg bg-light mb-5 fixed-top">
+    <!-- conatainer -->
+    <div class="container">
+      <a
+        href="{% url 'home'%}"
+        class="navbar-brand"
+        style="font-size: 4vh; font-family: 'Grand Hotel', cursive; color: black"
+        >Galería</a
+      >
+  
+      <!-- navbar toggler -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navmenu"
+        style="color: black"
+      >
+        <span class="navbar-toggler-icon dark"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter by the tribe
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Maasai</a></li>
-              <li><a class="dropdown-item" href="#">Kikuyu</a></li>
-              <li><a class="dropdown-item" href="#">Luo</a></li>
-            </ul>
-           
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter by the food
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Githeri</a></li>
-              <li><a class="dropdown-item" href="#">Samaki</a></li>
-              <li><a class="dropdown-item" href="#">Ugali</a></li>
-            </ul>
-           
-          </li>
-        </ul>
-        <a href="{% url 'add'%}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
+  
+      <!-- main div  -->
+      <div class="collapse navbar-collapse" id="navmenu">
+        <div class="collapse navbar-collapse" id="navmenu">
+          <!-- dropdown menu filter by category -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDarkDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="color: black"
+              >
+                Filter by Category
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="navbarDarkDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="{% url 'home'%}">All</a>
+                </li>
+  
+                {%for category in categories %}
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'home' %}?category={{category.name}}"
+                  >
+                    {{category.name}}</a
+                  >
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+  
+          <!-- dropdown menu filter by location -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDarkDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="color: black"
+              >
+                Filter by location
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="navbarDarkDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="{% url 'home'%}">All</a>
+                </li>
+  
+                {%for location in locations %}
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'home' %}?location={{location.name}}"
+                  >
+                    {{location.name}}</a
+                  >
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </div>
+  
+  <!-- adding a photo -->
+       <a href="{% url 'add'%}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
         <nav class="navbar bg-light">
           <div class="container-fluid">
             <form class="d-flex" role="search">
@@ -69,8 +133,7 @@
     <div class="col-md-9">
     <div class="row">
       <div class="col-md-4">
-      
-  <div class="card">
+        <div class="card">
     <img src="/static/photos/1.jpg" class="images" alt="" style="height:10%; width:100%;">
     <div class="card-body">
       
@@ -79,28 +142,9 @@
     <a href="{% url 'galley' 1%}" class="btn btn-outline-dark btn-sm-m-1">View</a>
   </div>
   </div>
-  <div class="col-md-4">
-      
-    <div class="card">
-      <img src="/static/photos/1.jpg" class="images" alt="" >
-      <div class="card-body">
-        
-        <small>Category:Tribe</small>
+    </div>
+    </div>
       </div>
-      <a href="{% url 'galley' 1%}" class="btn btn-outline-dark btn-sm-m-1">Maasai</a>
-    </div>
-    </div>
-    
-  
-  
-      </div>
-    </div>
-  </div>
-
-  
-    
-
-  
 </body>
 <br> <br>
 <style>
@@ -114,11 +158,7 @@
         text-align: center;
         font-size: xx-small;
     }
-
-
 </style>
-
-
 <div class="card-footer text-muted">
   <h2>Cultural Galleria</h2>
   <p>Copyrights 2022</p>
